@@ -13,7 +13,7 @@ class utils{
     const TYPE_NULL=NULL;
    // public static $TYPE_CHARS = array("!","@","#'","$","%","^","&","*","(","0","-","+","=",")");
 
-    
+   
 public static function getURLParam($array, $name, $type=null){
         /// Add functions for cleaning User Input
         $return = false;

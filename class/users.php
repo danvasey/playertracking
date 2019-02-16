@@ -1,23 +1,14 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- * Description of users
- *
- * @author dan
- */
+include 'DdataConn.php';
 
-require_once '../run.php';
 class users {
     public $link; 
     public $user; 
     public $active;
     public $id; 
+    public $name;
 
 
     const USER_ADMIN = 1; 
@@ -26,16 +17,23 @@ class users {
     
     
     public function __construct() {
-        $conn = new datalink();
+        $conn = new DdataConn();
         $this->link = $conn->connect(); 
     }
     
-    private function open($id){
-        $q = $this->link->prepare("SELECT * FROM users WHERE user_id = ? LIMIT 1 "); 
+    public function open($id){
+        $q = $this->link->prepare("SELECT * FROM users WHERE userID = ? LIMIT 1 "); 
         $v = array($id); 
-        $q->execute; 
+        $q->execute($v); 
         $results = $q->fetchALL(PDO::FETCH_ASSOC); 
-        return $results; 
+       
+        $this->loadUser($results);
+        return true; 
+    }
+    
+    private function loadUser($results){
+        $this->name = $results[0]['userName'];
+        $this->userID = $results[0]['userID'];
     }
     
       private function match($v1,$v2){
@@ -47,15 +45,16 @@ class users {
     
     
     public function login($username,$password){
-        $q = $this->link->prepare("SELECT username,user_password,user_id FROM users WHERE username = ? LIMIT 1"); 
+        $q = $this->link->prepare("SELECT userID,userPassword FROM users WHERE userName=? LIMIT 1"); 
         $v = array($username); 
         $q->execute($v); 
         $results = $q->fetchALL(PDO::FETCH_ASSOC); 
       
           if(count($results)>0){
-         if($this->match($password, $results[0]['user_password'])){
+         if($this->match($password, $results[0]['userPassword'])){
             $this->active = true;
-            $this->id  = $results[0]['user_id'];
+            $this->id  = $results[0]['userID'];
+            $this->name = $username;
             return true; 
         }else
         {
