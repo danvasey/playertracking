@@ -8,6 +8,8 @@ $user = new users();
 $user->open($_SESSION['userID']);
 $game = new game();
 
+
+
 $game->joinGame($user->userID, $gameName);
         
 

@@ -31,13 +31,25 @@ class game {
     }
    
     public function joinGame($userID, $gameName){
+        
+        if(!$this->inGame($userID, $gameName)){
+        
         $q = $this->link->prepare("INSERT into game (gamePlayerID,gameName) values(?,?)");
         $v = array($userID,$gameName);
         $q->execute($v);
-     
+         }
         return true;
     }
-       
-   
-   
+    
+    private function inGame($userID,$gameName){
+        $q = $this->link->prepare("SELECT count(*) as PlayerCount FROM game WHERE gamePlayerID = ? AND gameName = ? "); 
+        $v = array($userID,$gameName);
+        $q->execute($v);
+        $results = $q->fetchALL(PDO::FETCH_ASSOC); 
+        if($results[0]['PlayerCount']){
+        return true;}else{
+            return false; 
+        }
+    }
+
 }
