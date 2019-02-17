@@ -12,7 +12,7 @@ class playerList {
    }
    
    public function getPlayers($gameName){
-       $q = $this->link->prepare("SELECT * FROM game WHERE gameName = ? "); 
+       $q = $this->link->prepare("SELECT *, userName FROm game JOIN users ON gamePlayerID = users.userID WHERE gameName =? "); 
        $value = array($gameName); 
        $q->execute($value);
        

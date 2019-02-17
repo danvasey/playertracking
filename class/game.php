@@ -28,10 +28,15 @@ class game {
        }else{
            return false;
        }
-       
-   }
+    }
    
-   
+    public function joinGame($userID, $gameName){
+        $q = $this->link->prepare("INSERT into game (gamePlayerID,gameName) values(?,?)");
+        $v = array($userID,$gameName);
+        $q->execute($v);
+     
+        return true;
+    }
        
    
    
