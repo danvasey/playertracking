@@ -3,7 +3,7 @@
 include '../run.php';
 class playerList {  
      public $link;
-           
+     public $playerList; 
            
    public function __construct() {
        $conn = new DdataConn();
@@ -15,7 +15,9 @@ class playerList {
        $q = $this->link->prepare("SELECT * FROM game WHERE gameName = ? "); 
        $value = array($gameName); 
        $q->execute($value);
+       
        $results = $q->fetchALL(PDO::FETCH_ASSOC);
+       $this->playerList = $results; 
        return true;
    }
    

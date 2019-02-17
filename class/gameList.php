@@ -17,8 +17,9 @@ class gameList {
    }
    
    public function getList(){
-       $q = $this->link->prepare("SELECT DISTINCT * FROM game "); 
+       $q = $this->link->prepare("SELECT DISTINCT(gameName) FROM game "); 
        $q->execute();
+    
        $results = $q->fetchALL(PDO::FETCH_ASSOC);
        return $results;
    }

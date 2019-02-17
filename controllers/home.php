@@ -45,7 +45,7 @@ echo '</div><div class="header">
     <input type="text" readonly class="form-control-plaintext" id="joinGame" value="Join Game">
   </div>
   <div class="form-group mx-sm-3 mb-2">
-  <select name="joinGame">';
+  <select name="gameName">';
 
     foreach($gameList->gameList as $key=>$value){
         echo '<option value="'.$value['gameName'].'">'.$value['gameName'].'</option>';            
