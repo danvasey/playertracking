@@ -46,6 +46,7 @@ echo '</div><div class="header">
 
 /*
 // foreach loops take an array and cycle through it until the end; 
+    
 //  example $array  = array('Dan'=>'Vasey','Kevin'=>'Vasey'); 
             $array_1 = array('red','blue','pink'); 
 //
@@ -57,7 +58,7 @@ echo '</div><div class="header">
             Kevin - Vasey
           ***END OUTPUT ***  
        AND 
-        foreach($array as $a=>$b){
+        foreach($array_1 as $a=>$b){
             echo $a . '-'.$b.'<br>';
         }
             ****OUTPUT****
