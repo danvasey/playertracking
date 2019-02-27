@@ -3,11 +3,7 @@ session_start();
 include '../run.php';
 include 'header.php';
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 $user = new users();        
 $user->open($_SESSION['userID']);
 
@@ -46,6 +42,31 @@ echo '</div><div class="header">
   </div>
   <div class="form-group mx-sm-3 mb-2">
   <select name="gameName">';
+
+
+/*
+// foreach loops take an array and cycle through it until the end; 
+//  example $array  = array('Dan'=>'Vasey','Kevin'=>'Vasey'); 
+            $array_1 = array('red','blue','pink'); 
+//
+        foreach($array as $key=>$value){
+        echo $key . ' - ' $value . '<br>';  
+        }
+         ***OUTPUT***
+            dan - Vasey
+            Kevin - Vasey
+          ***END OUTPUT ***  
+       AND 
+        foreach($array as $a=>$b){
+            echo $a . '-'.$b.'<br>';
+        }
+            ****OUTPUT****
+                0 - red
+                1 - blue
+                2 - pink 
+            ****END OUTPUT****
+//
+*/
 
     foreach($gameList->gameList as $key=>$value){
         echo '<option value="'.$value['gameName'].'">'.$value['gameName'].'</option>';            
