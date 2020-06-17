@@ -5,5 +5,7 @@ spl_autoload_register(function ($class) {
 });
 
 $br = '<br/>';
+
+// NEW LINE
 ?>
 
