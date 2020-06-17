@@ -78,6 +78,7 @@ public static function loginTest(){
     }
 
  public static function setHash($string){
+     //Move to PHP Login Functions
      return hash('sha256',$string); 
  }
  
