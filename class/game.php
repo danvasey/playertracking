@@ -19,10 +19,10 @@ class game {
    
    
    public function creatGame($name,$master){
-       $q = $this->link->prepare("INSERT into game (gameName,gamePlayerID,gamePlayerMasterID) values(?,?,?)");
-       $values = array($name,$name,$master);
+       $q = $this->link->prepare("INSERT into game (`gameName`,`gamePlayerID`,`gamePlayerMasterID`) values(?,?,?)");
+       $values = array($name,$master,$master);
        $test = $q->execute($values);
-      
+     
        if($test){
            return true;
        }else{
